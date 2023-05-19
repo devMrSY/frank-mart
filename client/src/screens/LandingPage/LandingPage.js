@@ -10,8 +10,6 @@ import Navbar from "../Navbar/Navbar";
 import carouse1 from "../../assets/carousel/c1.jpg";
 import carouse2 from "../../assets/carousel/c2.webp";
 import carouse3 from "../../assets/carousel/c3.jpg";
-import Carousel from "react-material-ui-carousel";
-import Cart from "../Cart/Cart";
 
 const carouseImage = [carouse1, carouse2, carouse3];
 
@@ -22,10 +20,10 @@ const LandingPage = (props) => {
 
   const redirectPage = (role) => {
     switch (role) {
-      case strings.CUSTOMER:
-        return urls.homeViewPath;
       case strings.ADMIN:
         return urls.adminViewPath;
+      case strings.CUSTOMER:
+        return urls.productViewPath;
       default:
         return urls.loginViewPath;
     }
@@ -34,12 +32,6 @@ const LandingPage = (props) => {
   const getComponentBasedOnURL = () => {
     const location = props.location?.pathname?.split("/")[1].toLowerCase();
     switch (location) {
-      // case strings.LOGIN: {
-      //   return <LoginForm />;
-      // }
-      // case strings.SIGNUP: {
-      //   return <SignupForm />;
-      // }
       case strings.PRODUCT: {
         return <ProductPage />;
       }
@@ -52,23 +44,19 @@ const LandingPage = (props) => {
   const getLandingPage = () => {
     return (
       <>
-        {/* <Grid container> */}
-        {/* <Grid item xs={12} sm={12} md={4} lg={4} xl={4}> */}
-        <Navbar />
+        <Navbar isAdmin={false} />
         <Box mt={2}>{getComponentBasedOnURL()}</Box>
-        {/* </Grid> */}
-        {/* </Grid> */}
       </>
     );
   };
 
-  // if (isLoggedIn) {
-  //   let url = redirectPage(user_type);
-  //   history.push(url);
-  //   return null;
-  // } else {
-  return getLandingPage();
-  // }
+  if (isLoggedIn) {
+    let url = redirectPage(user_type);
+    history.push(url);
+    return null;
+  } else {
+    return getLandingPage();
+  }
 };
 
 export default LandingPage;

@@ -5,10 +5,9 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { logout } from "../../redux/authSlice";
 import LoginForm from "./Login/Login";
 import NavBarStyle from "./NavBarStyle";
-import CustomDrawer from "../Cart/components/CutomDrawer";
 import Cart from "../Cart/Cart";
 
-function Navbar() {
+function Navbar(props) {
   const classes = NavBarStyle;
   const [isLoginModal, setIsLoginModal] = React.useState(false);
   const [isCustomDrawer, setIsCustomDrawer] = React.useState(false);
@@ -21,7 +20,6 @@ function Navbar() {
     dispatch(logout());
   };
 
-  console.log(cartData, "cartDatas");
   const getLoginAndLogout = () => {
     return isAuthenticated ? (
       <>
@@ -65,11 +63,13 @@ function Navbar() {
             Frank Mart
           </Typography>
           {getLoginAndLogout()}
-          <ShoppingCartIcon
-            sx={classes.cartImage}
-            onClick={() => setIsCustomDrawer(true)}
-          />
-          {!!cartData?.length && (
+          {!props?.isAdmin && (
+            <ShoppingCartIcon
+              sx={classes.cartImage}
+              onClick={() => setIsCustomDrawer(true)}
+            />
+          )}
+          {!!cartData?.length && !props?.isAdmin && (
             <Typography component='span'>{cartData?.length}</Typography>
           )}
         </Toolbar>
