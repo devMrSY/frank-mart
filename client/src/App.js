@@ -12,7 +12,12 @@ const App = () => {
         <Switch>
           <Route
             exact
-            path={["/", urls.loginViewPath, urls.signupViewPath]}
+            path={[
+              "/",
+              urls.loginViewPath,
+              urls.signupViewPath,
+              urls.productViewPath,
+            ]}
             component={LandingPage}
           />
           <Layout />

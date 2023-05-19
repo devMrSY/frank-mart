@@ -5,7 +5,9 @@ export class StringConstants {
   LOGIN = "login";
   SIGNUP = "signup";
   USER = "user";
-  ADMIN = "admin";
+  ADMIN = "Admin";
+  CUSTOMER = "customer";
+  PRODUCT = "product";
 }
 let strings = new StringConstants();
 export default strings;

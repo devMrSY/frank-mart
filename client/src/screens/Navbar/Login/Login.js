@@ -1,18 +1,15 @@
-import { useEffect, useState } from "react";
-import { TextField, Button, Box } from "@mui/material";
-// import history from "../../../../utils/history";
-import urls from "../../../../global/constants/UrlConstants";
-import { useHistory } from "react-router-dom";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { loggedIn, token, userId, user_type } from "../../../redux/authSlice";
+import { Box, Button, Modal, TextField } from "@mui/material";
 import { login } from "./LoginService";
-import {
-  loggedIn,
-  token,
-  userId,
-  user_type,
-} from "../../../../redux/authSlice";
+import urls from "../../../global/constants/UrlConstants";
+import SignupForm from "../SignUp/Signup";
+import { cartData, userName } from "../../../redux/userSlice";
 
-const LoginForm = () => {
+const LoginForm = (props) => {
+  const [isSignUp, setIsSignUp] = useState(false);
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -36,22 +33,17 @@ const LoginForm = () => {
         dispatch(token(res.token));
         dispatch(loggedIn(true));
         dispatch(userId(res.userId));
+        dispatch(userName(res.userName));
       });
+      props.setIsLoginModal(false);
     } catch (error) {
       alert(error.message ?? error);
     }
   };
 
-  return (
-    <>
-      <form
-        onSubmit={handleSubmit}
-        // style={{
-        //   display: "flex",
-        //   justifyContent: "center",
-        //   marginTop: "10%",
-        // }}
-      >
+  const getForm = () => {
+    return (
+      <form onSubmit={handleSubmit}>
         <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           <TextField
             label='Email'
@@ -72,15 +64,46 @@ const LoginForm = () => {
           <Button type='submit' variant='contained'>
             Sign In
           </Button>
-          <Button
-            variant='contained'
-            onClick={() => history.push(urls.signupViewPath)}
-          >
+          <Button variant='contained' onClick={() => setIsSignUp(true)}>
             Go to Sign up
           </Button>
         </Box>
       </form>
-    </>
+    );
+  };
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
+
+  return (
+    <div>
+      <Modal
+        open={props.isLoginModal}
+        onClose={() => props.setIsLoginModal(false)}
+        aria-labelledby='modal-modal-title'
+        aria-describedby='modal-modal-description'
+      >
+        <Box sx={style}>
+          {isSignUp ? (
+            <SignupForm
+              setIsSignUp={setIsSignUp}
+              setIsLoginModal={props.setIsLoginModal}
+            />
+          ) : (
+            getForm()
+          )}
+        </Box>
+      </Modal>
+    </div>
   );
 };
 

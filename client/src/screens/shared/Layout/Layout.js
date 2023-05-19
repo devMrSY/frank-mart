@@ -12,11 +12,6 @@ const Layout = () => {
   const classes = layoutStyles;
 
   const isAuthenticated = useSelector((state) => state.auth.authenticate);
-  const dispatch = useDispatch();
-
-  const getLogout = () => {
-    dispatch(logout());
-  };
 
   const getContent = () => {
     return (
@@ -40,18 +35,9 @@ const Layout = () => {
     );
   };
 
-  const getLogoutButton = () => {
-    return (
-      <Button variant='contained' onClick={getLogout}>
-        Logout
-      </Button>
-    );
-  };
-
   const getLayout = () => {
     return (
       <>
-        {isAuthenticated && getLogoutButton()}
         {getContent()}
         {/* {isLoading && <CustomLoader />} */}
       </>

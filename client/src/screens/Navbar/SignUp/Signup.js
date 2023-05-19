@@ -8,14 +8,15 @@ import {
   FormControlLabel,
   Radio,
 } from "@mui/material";
-import urls from "../../../../global/constants/UrlConstants";
+import urls from "../../../global/constants/UrlConstants";
 import { useHistory } from "react-router-dom";
-import { token, userId, user_type } from "../../../../redux/authSlice";
-import { loggedIn } from "../../../../redux/authSlice";
+import { token, userId, user_type } from "../../../redux/authSlice";
+import { loggedIn } from "../../../redux/authSlice";
 import { useDispatch } from "react-redux";
 import { signUp } from "./SignUpService";
+import { userName } from "../../../redux/userSlice";
 
-const SignupForm = () => {
+const SignupForm = (props) => {
   const [info, setInfo] = useState({
     first_name: "",
     last_name: "",
@@ -47,6 +48,8 @@ const SignupForm = () => {
         dispatch(user_type(res.user_type));
         dispatch(loggedIn(true));
         dispatch(userId(res.userId));
+        dispatch(userName(res.userName));
+        props.setIsLoginModal(false);
       });
     } catch (error) {
       alert(error.message ?? error);
@@ -131,10 +134,7 @@ const SignupForm = () => {
           <Button type='submit' variant='contained' onClick={handleSubmit}>
             Sign Up
           </Button>
-          <Button
-            variant='contained'
-            onClick={() => history.push(urls.loginViewPath)}
-          >
+          <Button variant='contained' onClick={() => props.setIsSignUp(false)}>
             Go to Login
           </Button>
         </Box>

@@ -24,9 +24,9 @@ const Admin = (props) => {
           <Typography gutterBottom variant='h5' component='div'>
             {"name =" + user.first_name + " " + user.last_name}
           </Typography>
-          <Typography variant='body2' color='text.secondary'>
+          {/* <Typography variant='body2' color='text.secondary'>
             {user.departmentIds.join(",")}
-          </Typography>
+          </Typography> */}
         </CardContent>
         {/* <CardActions>
           <Button size='small'>Share</Button>
