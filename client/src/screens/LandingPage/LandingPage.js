@@ -1,5 +1,3 @@
-import LoginForm from "./components/Login/Login";
-import SignupForm from "./components/SignUp/Signup";
 import strings from "../../global/constants/StringConstants";
 import urls from "../../global/constants/UrlConstants";
 import { useHistory } from "react-router-dom";
@@ -18,41 +16,19 @@ const LandingPage = (props) => {
   const isLoggedIn = useSelector((state) => state.auth.authenticate);
   const user_type = useSelector((state) => state.auth.user_type);
 
-  const redirectPage = (role) => {
-    switch (role) {
-      case strings.ADMIN:
-        return urls.adminViewPath;
-      case strings.CUSTOMER:
-        return urls.productViewPath;
-      default:
-        return urls.loginViewPath;
-    }
-  };
-
-  const getComponentBasedOnURL = () => {
-    const location = props.location?.pathname?.split("/")[1].toLowerCase();
-    switch (location) {
-      case strings.PRODUCT: {
-        return <ProductPage />;
-      }
-      default: {
-        history.push(urls.productViewPath);
-      }
-    }
-  };
-
   const getLandingPage = () => {
     return (
       <>
         <Navbar isAdmin={false} />
-        <Box mt={2}>{getComponentBasedOnURL()}</Box>
+        <Box mt={2}>
+          <ProductPage />
+        </Box>
       </>
     );
   };
 
-  if (isLoggedIn) {
-    let url = redirectPage(user_type);
-    history.push(url);
+  if (isLoggedIn && user_type == strings.ADMIN) {
+    history.push(urls.adminViewPath);
     return null;
   } else {
     return getLandingPage();

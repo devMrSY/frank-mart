@@ -3,9 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import PrivateRoute from "../../../global/components/PrivateRoute/PrivateRoute";
 import { Box, Button } from "@mui/material";
 import urls from "../../../global/constants/UrlConstants";
-import Home from "../../Home/Home";
-import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../../redux/authSlice";
+import { useSelector } from "react-redux";
 import Admin from "../../Admin/Admin";
 
 const Layout = () => {
@@ -17,12 +15,6 @@ const Layout = () => {
     return (
       <Box sx={classes.content}>
         <Switch>
-          <PrivateRoute
-            exact
-            isLoggedIn={isAuthenticated}
-            path={urls.homeViewPath}
-            component={Home}
-          />
           <PrivateRoute
             exact
             isLoggedIn={isAuthenticated}
