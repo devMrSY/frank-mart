@@ -9,13 +9,13 @@ import {
   Typography,
 } from "@mui/material";
 import QuantitySelector from "../../../../../global/components/QuantitySelector/QuantitySelector";
-import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cartData } from "../../../../../redux/userSlice";
+import { cartData, total } from "../../../../../redux/userSlice";
 
 const Product = (props) => {
   const cartProductFromRedux = useSelector((state) => state.user.cartData);
   const dispatch = useDispatch();
+  let totalAmount = useSelector((state) => state.user.total) ?? 0;
 
   const addProduct = (currentProduct, currentQuantity) => {
     const products = JSON.parse(JSON.stringify(cartProductFromRedux));
@@ -30,8 +30,15 @@ const Product = (props) => {
         }
       });
     } else {
-      products.push({ id: currentProduct.id, quantity: currentQuantity });
+      products.push({
+        ...currentProduct,
+        id: currentProduct.id,
+        quantity: currentQuantity,
+      });
     }
+    debugger;
+    totalAmount += +currentProduct.price;
+    dispatch(total(totalAmount));
     dispatch(cartData(products));
   };
   return (

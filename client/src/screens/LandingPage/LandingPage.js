@@ -11,6 +11,7 @@ import carouse1 from "../../assets/carousel/c1.jpg";
 import carouse2 from "../../assets/carousel/c2.webp";
 import carouse3 from "../../assets/carousel/c3.jpg";
 import Carousel from "react-material-ui-carousel";
+import Cart from "../Cart/Cart";
 
 const carouseImage = [carouse1, carouse2, carouse3];
 
@@ -54,7 +55,7 @@ const LandingPage = (props) => {
         {/* <Grid container> */}
         {/* <Grid item xs={12} sm={12} md={4} lg={4} xl={4}> */}
         <Navbar />
-        {getComponentBasedOnURL()}
+        <Box mt={2}>{getComponentBasedOnURL()}</Box>
         {/* </Grid> */}
         {/* </Grid> */}
       </>

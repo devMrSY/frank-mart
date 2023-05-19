@@ -5,18 +5,23 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { logout } from "../../redux/authSlice";
 import LoginForm from "./Login/Login";
 import NavBarStyle from "./NavBarStyle";
+import CustomDrawer from "../Cart/components/CutomDrawer";
+import Cart from "../Cart/Cart";
 
 function Navbar() {
   const classes = NavBarStyle;
   const [isLoginModal, setIsLoginModal] = React.useState(false);
+  const [isCustomDrawer, setIsCustomDrawer] = React.useState(false);
   const isAuthenticated = useSelector((state) => state.auth.authenticate);
   const userName = useSelector((state) => state.user.userName);
+  const cartData = useSelector((state) => state.user.cartData);
   const dispatch = useDispatch();
 
   const getLogout = () => {
     dispatch(logout());
   };
 
+  console.log(cartData, "cartDatas");
   const getLoginAndLogout = () => {
     return isAuthenticated ? (
       <>
@@ -41,7 +46,11 @@ function Navbar() {
           component='div'
           sx={{ flexGrow: 1 }}
         ></Typography>
-        <Button variant='contained' onClick={() => setIsLoginModal(true)}>
+        <Button
+          mx={2}
+          variant='contained'
+          onClick={() => setIsLoginModal(true)}
+        >
           Login
         </Button>
       </Box>
@@ -50,13 +59,19 @@ function Navbar() {
 
   return (
     <>
-      <AppBar position='static'>
+      <AppBar position='fixed'>
         <Toolbar>
           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-            My App
+            Frank Mart
           </Typography>
           {getLoginAndLogout()}
-          <ShoppingCartIcon className={classes.cartImage} />
+          <ShoppingCartIcon
+            sx={classes.cartImage}
+            onClick={() => setIsCustomDrawer(true)}
+          />
+          {!!cartData?.length && (
+            <Typography component='span'>{cartData?.length}</Typography>
+          )}
         </Toolbar>
       </AppBar>
       {isLoginModal && (
@@ -65,6 +80,12 @@ function Navbar() {
           setIsLoginModal={setIsLoginModal}
         />
       )}
+      {
+        <Cart
+          isCustomDrawer={isCustomDrawer}
+          setIsCustomDrawer={setIsCustomDrawer}
+        />
+      }
     </>
   );
 }
