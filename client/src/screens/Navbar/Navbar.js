@@ -63,7 +63,7 @@ function Navbar(props) {
             Frank Mart
           </Typography>
           {getLoginAndLogout()}
-          {!props?.isAdmin && (
+          {!props?.isAdmin && !!cartData.length && (
             <ShoppingCartIcon
               sx={classes.cartImage}
               onClick={() => setIsCustomDrawer(true)}

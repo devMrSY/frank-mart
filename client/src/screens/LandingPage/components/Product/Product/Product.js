@@ -17,7 +17,8 @@ const Product = (props) => {
   const dispatch = useDispatch();
   let totalAmount = useSelector((state) => state.user.total) ?? 0;
 
-  const addProduct = (currentProduct, currentQuantity) => {
+  const addProduct = (currentProduct, currentQuantity, actionType) => {
+    if (currentQuantity == -1) return;
     const products = JSON.parse(JSON.stringify(cartProductFromRedux));
     const isProduct = products.find(
       (product) => product?.id == currentProduct.id
@@ -36,14 +37,22 @@ const Product = (props) => {
         quantity: currentQuantity,
       });
     }
-    debugger;
-    totalAmount += +currentProduct.price;
+    if (actionType == "+") totalAmount += +currentProduct.price;
+    else {
+      totalAmount -= +currentProduct.price;
+      const index = products.findIndex(
+        (item) => item.id == currentProduct.id && !item.quantity
+      );
+      if (index != -1) {
+        products.splice(index, 1);
+      }
+    }
     dispatch(total(totalAmount));
     dispatch(cartData(products));
   };
   return (
-    <Grid item lg={12}>
-      <Card>
+    <Grid item lg={12} display={"flex"} height={"100%"}>
+      <Card sx={{ width: "100%" }}>
         <CardMedia
           sx={{ height: 140 }}
           image={props.product.thumbnail}

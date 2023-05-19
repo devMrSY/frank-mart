@@ -68,7 +68,7 @@ const Cart = (props) => {
         <Box mx={2} mt={2}>
           {getBody()}
           <Divider sx={{ marginTop: "8px" }} />
-          {getTotal()}
+          {!!cartData.length && getTotal()}
         </Box>
       </>
     </CustomDrawer>

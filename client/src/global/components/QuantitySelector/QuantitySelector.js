@@ -21,23 +21,33 @@ const QuantitySelector = (props) => {
     if (quantity > 0) {
       setQuantity(quantity - 1);
     }
-    props.addProduct(product, quantity - 1);
+    props.addProduct(product, quantity - 1, "-");
   };
 
   const handleIncrease = (product) => {
     setQuantity(quantity + 1);
-    props.addProduct(product, quantity + 1);
+    props.addProduct(product, quantity + 1, "+");
   };
 
   return (
     <Grid container display={"flex"} alignItems={"center"}>
       <Box sx={classes.qSBox}>
         <Grid item>
-          <Button onClick={() => handleDecrease(props.product)}>-</Button>
+          <Button
+            onClick={() => handleDecrease(props.product)}
+            sx={classes.cursor}
+          >
+            -
+          </Button>
         </Grid>
         <Typography component='span'>{quantity}</Typography>
         <Grid item>
-          <Button onClick={() => handleIncrease(props.product)}>+</Button>
+          <Button
+            onClick={() => handleIncrease(props.product)}
+            sx={classes.cursor}
+          >
+            +
+          </Button>
         </Grid>
       </Box>
     </Grid>

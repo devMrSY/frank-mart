@@ -6,6 +6,9 @@ const quantitySelectorStyles = {
     display: "flex",
     borderRadius: "12px",
   },
+  cursor: {
+    cursor: "pointer",
+  },
 };
 
 export default quantitySelectorStyles;

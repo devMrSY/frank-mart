@@ -12,7 +12,6 @@ const carouseImage = [carouse1, carouse2, carouse3];
 
 const ProductPage = () => {
   const [productData, setProductData] = useState([]);
-  const cartProductFromRedux = useSelector((state) => state.user.cartData);
 
   useEffect(() => {
     getProduct();
@@ -38,9 +37,9 @@ const ProductPage = () => {
 
   const getProductList = () => {
     return (
-      <Grid container rowGap={2}>
+      <Grid container px={4}>
         {productData.map((product) => (
-          <Grid item lg={4}>
+          <Grid item lg={4} p={2}>
             <Product product={product} />
           </Grid>
         ))}
