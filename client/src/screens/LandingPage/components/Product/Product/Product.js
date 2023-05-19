@@ -14,15 +14,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { cartData } from "../../../../../redux/userSlice";
 
 const Product = (props) => {
-  const [cartProduct, setCartProuct] = useState();
-  const [cartProductState, setCartProductState] = useState();
   const cartProductFromRedux = useSelector((state) => state.user.cartData);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    setCartProductState(cartProductFromRedux);
-  }, []);
-  const addProduct = (currentProduct, actionType, currentQuantity) => {};
+  const addProduct = (currentProduct, currentQuantity) => {
+    const products = JSON.parse(JSON.stringify(cartProductFromRedux));
+    const isProduct = products.find(
+      (product) => product?.id == currentProduct.id
+    );
+    if (isProduct?.id) {
+      products.forEach((item) => {
+        if (item.id == currentProduct.id) {
+          item.id = currentProduct.id;
+          item.quantity = currentQuantity;
+        }
+      });
+    } else {
+      products.push({ id: currentProduct.id, quantity: currentQuantity });
+    }
+    dispatch(cartData(products));
+  };
   return (
     <Grid item lg={12}>
       <Card>

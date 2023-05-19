@@ -6,19 +6,25 @@ import Carousel from "react-material-ui-carousel";
 import { getProductDetails } from "./ProductService";
 import { Grid } from "@mui/material";
 import Product from "./Product/Product";
+import { useSelector } from "react-redux";
 
 const carouseImage = [carouse1, carouse2, carouse3];
 
 const ProductPage = () => {
   const [productData, setProductData] = useState([]);
+  const cartProductFromRedux = useSelector((state) => state.user.cartData);
 
   useEffect(() => {
     getProduct();
   }, []);
 
   const getProduct = async () => {
-    const products = await getProductDetails();
-    setProductData(products);
+    try {
+      const products = await getProductDetails();
+      setProductData(products);
+    } catch (error) {
+      alert(error.message ?? error);
+    }
   };
   const getCarousel = () => {
     return (

@@ -1,21 +1,32 @@
 import React, { useState } from "react";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import quantitySelectorStyles from "./QunantitySelectorStyles";
+import { useSelector } from "react-redux";
 
 const QuantitySelector = (props) => {
   const classes = quantitySelectorStyles;
-  const [quantity, setQuantity] = useState(0);
+  const cartProductFromRedux = useSelector((state) => state.user.cartData);
+  const [quantity, setQuantity] = useState(getQuantity() ?? 0);
+
+  function getQuantity() {
+    let q = null;
+    cartProductFromRedux.forEach((item) => {
+      console.log(props.product.id, item.id, item.quantity);
+      if (props.product.id == item.id) q = item.quantity;
+    });
+    return q;
+  }
 
   const handleDecrease = (product) => {
     if (quantity > 0) {
       setQuantity(quantity - 1);
     }
-    props.addProduct(product, "-", quantity - 1);
+    props.addProduct(product, quantity - 1);
   };
 
   const handleIncrease = (product) => {
     setQuantity(quantity + 1);
-    props.addProduct(product, "+", quantity + 1);
+    props.addProduct(product, quantity + 1);
   };
 
   return (

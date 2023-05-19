@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   userName: "",
-  cartData: [{ id: "", quantity: 0 }],
+  cartData: [],
 };
 
 // const state = store.getState();
