@@ -17,14 +17,16 @@ const QuantitySelector = (props) => {
     return q;
   }
 
-  const handleDecrease = (product) => {
+  const handleDecrease = (e, product) => {
+    e.stopPropagation();
     if (quantity > 0) {
       setQuantity(quantity - 1);
     }
     props.addProduct(product, quantity - 1, "-");
   };
 
-  const handleIncrease = (product) => {
+  const handleIncrease = (e, product) => {
+    e.stopPropagation();
     setQuantity(quantity + 1);
     props.addProduct(product, quantity + 1, "+");
   };
@@ -34,7 +36,7 @@ const QuantitySelector = (props) => {
       <Box sx={classes.qSBox}>
         <Grid item>
           <Button
-            onClick={() => handleDecrease(props.product)}
+            onClick={(e) => handleDecrease(e, props.product)}
             sx={classes.cursor}
           >
             -
@@ -43,7 +45,7 @@ const QuantitySelector = (props) => {
         <Typography component='span'>{quantity}</Typography>
         <Grid item>
           <Button
-            onClick={() => handleIncrease(props.product)}
+            onClick={(e) => handleIncrease(e, props.product)}
             sx={classes.cursor}
           >
             +

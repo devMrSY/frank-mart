@@ -23,7 +23,7 @@ const SignupForm = (props) => {
     email: "",
     password: "",
     gender: "",
-    user_type: "",
+    user_type: "customer",
   });
 
   const history = useHistory();
@@ -68,7 +68,7 @@ const SignupForm = (props) => {
       >
         <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           <TextField
-            label='first_name'
+            label='first name'
             type='text'
             name='first_name'
             value={info.first_name}
@@ -76,7 +76,7 @@ const SignupForm = (props) => {
             required
           />
           <TextField
-            label='last_name'
+            label='last name'
             type='text'
             name='last_name'
             value={info.last_name}
@@ -115,7 +115,7 @@ const SignupForm = (props) => {
             />
           </RadioGroup>
 
-          <FormLabel component='legend'>User Type</FormLabel>
+          {/* <FormLabel component='legend'>User Type</FormLabel>
           <RadioGroup
             aria-label='user_type'
             name='user_type'
@@ -129,7 +129,7 @@ const SignupForm = (props) => {
               label='Customer'
             />
             <FormControlLabel value='Admin' control={<Radio />} label='Admin' />
-          </RadioGroup>
+          </RadioGroup> */}
 
           <Button type='submit' variant='contained' onClick={handleSubmit}>
             Sign Up

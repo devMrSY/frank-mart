@@ -40,7 +40,7 @@ const ProductPage = () => {
       <Grid container px={4}>
         {productData.map((product) => (
           <Grid item lg={4} p={2}>
-            <Product product={product} />
+            <Product product={product} isHead={true} />
           </Grid>
         ))}
       </Grid>

@@ -11,10 +11,14 @@ import {
 import QuantitySelector from "../../../../../global/components/QuantitySelector/QuantitySelector";
 import { useDispatch, useSelector } from "react-redux";
 import { cartData, total } from "../../../../../redux/userSlice";
+import urls from "../../../../../global/constants/UrlConstants";
+import { useHistory } from "react-router-dom";
 
 const Product = (props) => {
+  console.log(props);
   const cartProductFromRedux = useSelector((state) => state.user.cartData);
   const dispatch = useDispatch();
+  const history = useHistory();
   let totalAmount = useSelector((state) => state.user.total) ?? 0;
 
   const addProduct = (currentProduct, currentQuantity, actionType) => {
@@ -50,14 +54,28 @@ const Product = (props) => {
     dispatch(total(totalAmount));
     dispatch(cartData(products));
   };
+
+  const getProductDetails = (productId) => {
+    history.push(`${urls.productDetailsViewPath}/${productId}`);
+  };
+
   return (
-    <Grid item lg={12} display={"flex"} height={"100%"}>
+    <Grid
+      item
+      lg={12}
+      display={"flex"}
+      height={"100%"}
+      sx={{ cursor: "pointer" }}
+      onClick={() => getProductDetails(props.product.id)}
+    >
       <Card sx={{ width: "100%" }}>
-        <CardMedia
-          sx={{ height: 140 }}
-          image={props.product.thumbnail}
-          title='green iguana'
-        />
+        {props.isHead && (
+          <CardMedia
+            sx={{ height: 140 }}
+            image={props.product.thumbnail}
+            title='green iguana'
+          />
+        )}
         <CardContent>
           <Box display={"flex"} justifyContent={"space-between"}>
             <Typography gutterBottom variant='h4' component='div'>

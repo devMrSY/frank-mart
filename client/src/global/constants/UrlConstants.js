@@ -5,12 +5,14 @@ class UrlConstants extends StringConstants {
 
   adminViewPath = "/admin";
   productViewPath = "/product";
+  productDetailsViewPath = "/productDetails";
 
   API = "api";
 
   LOGIN = `${this.url_dev}/${this.API}/login`;
   SIGNUP = `${this.url_dev}/${this.API}/signup`;
   GETPRODUCTS = `${this.url_dev}/${this.API}/getProducts`;
+  GETPRODUCTSBYPRODUCTID = `${this.url_dev}/${this.API}/getProductsById`;
 }
 
 let urls = new UrlConstants();
