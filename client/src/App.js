@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LandingPage from "./screens/LandingPage/LandingPage";
 import { Box } from "@mui/material";
 import urls from "./global/constants/UrlConstants";
-import Layout from "./screens/shared/Layout/Layout";
+import Layout from "./screens/Layout/Layout";
 
 const App = () => {
   return (
@@ -12,7 +12,7 @@ const App = () => {
         <Switch>
           <Route
             exact
-            path={["/", urls.productViewPath]}
+            path={["/", urls.loginViewPath]}
             component={LandingPage}
           />
           <Layout />

@@ -13,7 +13,7 @@ const PrivateRoute = (props) => {
         ) : (
           <Redirect
             to={{
-              pathname: urls.productViewPath,
+              pathname: urls.loginViewPath,
               state: {
                 from: routeProps.location,
                 search: routeProps.location.search,

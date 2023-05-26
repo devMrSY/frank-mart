@@ -14,9 +14,7 @@ root.render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>
       <ErrorBoundary>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
+        <App />
       </ErrorBoundary>
     </ThemeProvider>
   </Provider>

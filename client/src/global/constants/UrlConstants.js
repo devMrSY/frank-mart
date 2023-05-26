@@ -1,16 +1,23 @@
 import { StringConstants } from "./StringConstants";
 
 class UrlConstants extends StringConstants {
-  url_dev = "http://localhost:4000";
+  url_dev = "http://localhost:3004";
 
-  adminViewPath = "/admin";
-  productViewPath = "/product";
+  loginViewPath = "/login";
+  viewTaskViewPath = "/viewTask/";
+  editTaskViewPath = "/editTask/";
+  createTaskViewPath = "/createTask";
+  jokeSpotViewPath = "/jokesSpot";
 
-  API = "api";
+  LOGIN = `${this.url_dev}/login`;
+  GET_ALL_TASK = `${this.url_dev}/tasks`;
+  GET_TASK_BY_ID = `${this.url_dev}/tasks/`;
+  DELETE_BY_USER_ID = `${this.url_dev}/tasks/`;
+  CREATE_RESOURCE = `${this.url_dev}/tasks/`;
+  UPDATE_RESOURCE = `${this.url_dev}/tasks/`;
 
-  LOGIN = `${this.url_dev}/${this.API}/login`;
-  SIGNUP = `${this.url_dev}/${this.API}/signup`;
-  GETPRODUCTS = `${this.url_dev}/${this.API}/getProducts`;
+  // AUTH
+  LOGIN = `${this.url_dev}/auth`;
 }
 
 let urls = new UrlConstants();
