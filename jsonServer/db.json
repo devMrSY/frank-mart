@@ -1,19 +1,117 @@
 {
-  "posts": [
+  "auth": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "email": "abc@test.com",
+      "password": "abc123"
     }
   ],
-  "comments": [
+  "tasks": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": 6,
+      "task_name": "home work",
+      "discription": "complet the task by tomorrow",
+      "status": "scheduled",
+      "start_time": "1/1/2021",
+      "end_time": "1/1/2021"
+    },
+    {
+      "id": 90,
+      "task_name": "home work",
+      "discription": "complet the task by tomorrow",
+      "status": "scheduled",
+      "start_time": "1/1/2021",
+      "end_time": "1/1/2021"
+    },
+    {
+      "id": 37,
+      "task_name": "home work",
+      "discription": "complet the task by tomorrow",
+      "status": "scheduled",
+      "start_time": "1/1/2021",
+      "end_time": "1/1/2021"
+    },
+    {
+      "id": 19,
+      "task_name": "home work",
+      "discription": "complet the task by tomorrow",
+      "status": "scheduled",
+      "start_time": "1/1/2021",
+      "end_time": "1/1/2021"
+    },
+    {
+      "id": 34,
+      "task_name": "home work",
+      "discription": "complet the task by tomorrow",
+      "status": "scheduled",
+      "start_time": "1/1/2021",
+      "end_time": "1/1/2021"
+    },
+    {
+      "id": 2,
+      "task_name": "home work",
+      "discription": "complet the task by tomorrow",
+      "status": "scheduled",
+      "start_time": "1/1/2021",
+      "end_time": "1/1/2021"
+    },
+    {
+      "task_name": "aw",
+      "discription": "as",
+      "start_time": "adf",
+      "end_time": "adf",
+      "status": "ad",
+      "id": 91
+    },
+    {
+      "task_name": "lkj",
+      "discription": "lkj",
+      "start_time": "lkjkl",
+      "end_time": "jlkj",
+      "status": "lkj",
+      "id": 92
+    },
+    {
+      "task_name": "adasdf",
+      "discription": "asdf",
+      "start_time": "adlkf",
+      "end_time": "lasldkjlk",
+      "status": "lkjlk",
+      "id": 93
+    },
+    {
+      "id": 94
+    },
+    {
+      "task_name": "adasdfadfas",
+      "discription": "asdf",
+      "start_time": "adlkf",
+      "end_time": "lasldkjlk",
+      "status": "lkjlk",
+      "id": 95
+    },
+    {
+      "task_name": "adasdfadfas",
+      "discription": "asdfadfas",
+      "start_time": "adlkf",
+      "end_time": "lasldkjlkasdfsdfasdfasdf",
+      "status": "lkjlk",
+      "id": 96
+    },
+    {
+      "task_name": "adasdfadfasasdfsdfsdaaaaaaaaaaaaaaaaaaa",
+      "discription": "asdf",
+      "start_time": "adlkf",
+      "end_time": "lasldkjlk",
+      "status": "lkjlk",
+      "id": 97
+    },
+    {
+      "task_name": "adasdfadfasasdfs",
+      "discription": "asdf",
+      "start_time": "adlkf",
+      "end_time": "lasldkjlkadfasdfasdfasdfasdfasdfasdfasdfasdfasdf",
+      "status": "lkjlk",
+      "id": 98
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }
